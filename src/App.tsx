@@ -127,6 +127,7 @@ const scenarios = {
   }
 } as const;
 
+console.log("🔐 OpenAI API Key:", import.meta.env.VITE_OPENAI_API_KEY);
 const generateInsight = async (message: string): Promise<string> => {
   const defaultInsights = [
     "You're building your empathy skills with each message.",
