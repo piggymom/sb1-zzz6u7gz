@@ -4,7 +4,7 @@ export const config = {
   runtime: 'edge',
 };
 
-export default async function handler(req: Request) {
+export default async function generateInsightHandler(req: Request) {
   try {
     const body = await req.json();
     const userMessage = body.message;
@@ -40,4 +40,5 @@ export default async function handler(req: Request) {
   }
 }
 Add Vercel edge function for OpenAI insight generation
+Fix: name export function for Vercel edge compatibility
 
