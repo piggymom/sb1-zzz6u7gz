@@ -1,0 +1,15 @@
+{
+  "functions": {
+    "vercel-functions/api/*.ts": {
+      "runtime": "edge"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "vercel-functions/api/$1.ts"
+    }
+  ]
+}
+Configure Vercel to route API requests to edge function
+
