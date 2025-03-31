@@ -1,5 +1,3 @@
-// vercel-functions/api/generate-insight.ts
-
 export const config = {
   runtime: 'edge',
 };
@@ -19,4 +17,23 @@ export default async function generateInsightHandler(req: Request) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer
+        Authorization: `Bearer ${openAIKey}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [
+          { role: "system", content: "You are an emotionally intelligent communication coach." },
+          { role: "user", content: `Analyze this message and return a short, emotionally intelligent insight:\n\n${userMessage}` }
+        ],
+        temperature: 0.7
+      })
+    });
+
+    const data = await response.json();
+    const insight = data.choices?.[0]?.message?.content || "You're doing great — keep practicing empathy.";
+
+    return new Response(JSON.stringify({ insight }), { status: 200 });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: "Insight generation failed" }), { status: 500 });
+  }
+}
