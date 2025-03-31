@@ -38,7 +38,4 @@ export default async function generateInsightHandler(req: Request) {
   } catch (err) {
     return new Response(JSON.stringify({ error: "Insight generation failed" }), { status: 500 });
   }
-}
-Add Vercel edge function for OpenAI insight generation
-Fix: name export function for Vercel edge compatibility
 
